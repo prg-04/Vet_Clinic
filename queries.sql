@@ -201,11 +201,10 @@ WHERE vet_id = (SELECT id FROM vets WHERE name = 'Stephanie Mendez');
 
 -- List all vets and their specialties, including vets with no specialties.
 
-SELECT vets.name as vet_name, specialties.name as specialty_name
-FROM vets
-LEFT JOIN specializations ON vets.id = specializations.vet_id
-LEFT JOIN species ON specializations.species_id = species.id
-LEFT JOIN specialties ON species.specialty_id = specialties.id;
+SELECT v.name AS vet_name, COALESCE(spec.name, 'No specialty') AS specialty_name
+FROM vets v
+LEFT JOIN specializations spec ON v.id = spec.vet_id
+LEFT JOIN species s ON spec.species_id = s.id;
 
 
 -- List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020.
@@ -216,7 +215,7 @@ JOIN vets ON visits.vet_id = vets.id
 JOIN animals ON visits.animal_id = animals.id
 WHERE vets.name = 'Stephanie Mendez'
   AND visits.date_of_visit BETWEEN '2020-04-01' AND '2020-08-30';
-This query lists all animals that visited Stephanie Mendez within the specified date range.
+
 
 -- What animal has the most visits to vets?
 
