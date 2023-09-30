@@ -10,27 +10,7 @@ CREATE TABLE animals(
 	PRIMARY KEY(id)
 )
 
-BEGIN;
-
-ALTER TABLE
+ALTER TABLE animals
 ADD COLUMN species VARCHAR(100);
 
 
-
-BEGIN;
-
-UPDATE animals
-SET species = 'Unspecified';
-
-
-BEGIN;
-
-UPDATE animals
-SET species = 'digimon'
-WHERE name LIKE '%_mon';
-
-UPDATE animals
-SET species = 'pokemon'
-WHERE species = 'Unspecified';
-
-COMMIT;
