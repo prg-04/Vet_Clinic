@@ -27,3 +27,44 @@ INSERT INTO animals(
     ('Boarmon','2005-06-07', 20.4, true ,7 ),
     ('Blossom', '1998-10-13', 17, true, 3),
     ('Ditto', '2022-05-14',  22, true, 4);
+
+INSERT INTO owners(
+    full_name,
+    age
+    ) VALUES
+    ('Sam Smith', 34),
+    ('Jennifer Orwell', 19),
+    ('Bob', 45),
+    ('Melody Pond', 77),
+    ('Dean Winchester', 14),
+    ('Jodie Whittaker', 38),
+    ('Professor Oak', 60);
+    
+INSERT INTO species(
+    name
+    ) VALUES
+    ('Digimon'),
+    ('Pokemon');    
+
+
+
+
+INSERT INTO animals(name, date_of_birth, weight_kg, neutered, escape_attempts, owner_id, species_id)
+VALUES
+    ('Charmander', '2020-02-08', 11, false, 0, (SELECT id FROM owners WHERE full_name = 'Melody Pond'), (SELECT id FROM species WHERE name = 'Pokemon')),
+    ('Plantmon', '2021-11-15', 5.7, true, 2, (SELECT id FROM owners WHERE full_name = 'Bob'), (SELECT id FROM species WHERE name = 'Digimon')),
+    ('Squirtle', '1993-04-02', 12.13, false, 3, (SELECT id FROM owners WHERE full_name = 'Melody Pond'), (SELECT id FROM species WHERE name = 'Pokemon')),
+    ('Angemon', '2005-06-12', 45, true, 1, (SELECT id FROM owners WHERE full_name = 'Dean Winchester'), (SELECT id FROM species WHERE name = 'Digimon')),
+    ('Boarmon', '2005-06-07', 20.4, true, 7, (SELECT id FROM owners WHERE full_name = 'Dean Winchester'), (SELECT id FROM species WHERE name = 'Digimon')),
+    ('Blossom', '1998-10-13', 17, true, 3, (SELECT id FROM owners WHERE full_name = 'Melody Pond'), (SELECT id FROM species WHERE name = 'Digimon')),
+    ('Ditto', '2022-05-14', 22, true, 4, (SELECT id FROM species WHERE name = 'Pokemon'), NULL); 
+    
+INSERT INTO animals(name, date_of_birth, weight_kg, neutered, escape_attempts, owner_id, species_id)
+VALUES
+    ('Gabumon', NULL, NULL, NULL, NULL, (SELECT id FROM owners WHERE full_name = 'Jennifer Orwell'), (SELECT id FROM species WHERE name = 'Digimon')),
+    ('Pikachu', NULL, NULL, NULL, NULL, (SELECT id FROM owners WHERE full_name = 'Jennifer Orwell'), (SELECT id FROM species WHERE name = 'Pokemon'));
+
+
+
+
+
