@@ -22,8 +22,11 @@ BEGIN;
 UPDATE animals
 SET species = 'Unspecified';
 ROLLBACK;
-SELECT species FROM animals;
+
+SELECT species FROM animals;  --verify that change was made before commit
 COMMIT;
+SELECT species FROM animals;   --verify that change was made after commit
+
 
 
 BEGIN;
@@ -34,10 +37,15 @@ WHERE name LIKE '%_mon';
 UPDATE animals
 SET species = 'pokemon'
 WHERE species = 'Unspecified';
+
+SELECT * FROM animals; --verify that change was made before commit
 COMMIT;
+SELECT * FROM animals; --verify that change was made after commit
+
 
 BEGIN;
 DELETE FROM animals;
+
 SELECT * FROM animals;
 ROLLBACK;
 SELECT * FROM animals;
@@ -53,6 +61,7 @@ BEGIN;
 UPDATE animals
 SET weight_kg = weight_kg * -1;
 ROLLBACK TO sp1;
+SELECT * FROM animals ORDER BY weight_kg DESC;
 
 
 
@@ -60,7 +69,11 @@ BEGIN;
 UPDATE animals
 SET weight_kg = weight_kg * -1
 WHERE weight_kg < 0;
+
+SELECT * FROM animals; --verify that change was made before commit
 COMMIT;
+SELECT * FROM animals; --verify that change was made after commit
+
 
 
 -- How many animals are there?
