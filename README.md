@@ -120,7 +120,6 @@ To set up and connect your project with a PostgreSQL database, follow these step
 
 Run database migrations to set up the required tables:
 
-```sh
 npm run migrate
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
